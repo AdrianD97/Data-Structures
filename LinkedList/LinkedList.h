@@ -89,6 +89,9 @@ void removeItemFromLinkedList(LinkedList* list, const char* value) {
 
 	if (node) {
 		helpNode->next = node->next;
+		if (node == list->tail) {
+			list->tail = helpNode;
+		}
 		free(node);
 		--list->length;
 	}
