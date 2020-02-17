@@ -58,17 +58,23 @@ void testAddItemToLinkedList() {
 	addItemToLinkedList(list, elem1);
 	assert(list->length == 1);
 	assert(list->head == list->tail);
+	assert(strcmp(list->head->value, elem1) == 0);
 	assert(list->head->next == NULL);
 
 	addItemToLinkedList(list, elem2);
 	addItemToLinkedList(list, elem3);
 	assert(list->length == 3);
-	assert(list->head != NULL);
-	assert(list->tail != NULL);
+	assert(strcmp(list->head->next->value, elem2) == 0);
+	assert(strcmp(list->head->next->next->value, elem3) == 0);
+	assert(strcmp(list->tail->value, elem3) == 0);
+
 	displayLinkedList(list);
 
 	addItemToLinkedList(list, elem4);
 	assert(list->length == 4);
+	assert(list->head->next->next->next == list->tail);
+	assert(strcmp(list->head->next->next->next->value, elem4) == 0);
+	assert(strcmp(list->tail->value, elem4) == 0);
 	displayLinkedList(list);
 
 	freeLinkedListMemory(list);
