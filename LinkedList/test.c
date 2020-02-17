@@ -149,6 +149,16 @@ void testRemoveItemFromLinkedList() {
 
 	addItemToLinkedList(list, elem1);
 	assert(list->length == 1);
+	assert(list->head == list->tail);
+	assert(strcmp(list->head->value, elem1) == 0);
+	assert(strcmp(list->tail->value, elem1) == 0);
+
+	removeItemFromLinkedList(list, elem4);
+	assert(list->length == 1);
+	assert(list->head == list->tail);
+	assert(strcmp(list->head->value, elem1) == 0);
+	assert(strcmp(list->tail->value, elem1) == 0);
+
 	removeItemFromLinkedList(list, elem1);
 	assert(list->length == 0);
 	assert(list->head == NULL);

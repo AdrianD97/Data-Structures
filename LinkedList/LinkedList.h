@@ -58,10 +58,12 @@ void removeItemFromLinkedList(LinkedList* list, const char* value) {
 	}
 
 	// a single item
-	if (strcmp(list->head->value, value) == 0 && list->length == 1) {
-		list->length = 0;
-		free(list->head);
-		list->head = list->tail = NULL;
+	if (list->length == 1) {
+		if (strcmp(list->head->value, value) == 0) {
+			list->length = 0;
+			free(list->head);
+			list->head = list->tail = NULL;
+		}
 		return;
 	}
 
