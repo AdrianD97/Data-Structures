@@ -18,6 +18,7 @@ void testNodeStructure() {
 	assert(strcmp(node->value, var) == 0);
 	assert(node->next == NULL);
 	free(node);
+	node = NULL;
 
 	printf("\n");
 }

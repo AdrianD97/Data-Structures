@@ -19,6 +19,7 @@ void testCreateEmptyQueue() {
 
 	freeQueueMemory(queue);
 	free(queue);
+	queue = NULL;
 
 	printf("\n");
 }
@@ -72,6 +73,7 @@ void testAdd() {
 
 	freeQueueMemory(queue);
 	free(queue);
+	queue = NULL;
 
 	printf("\n");
 }
@@ -180,6 +182,7 @@ void testErase() {
 
 	freeQueueMemory(queue);
 	free(queue);
+	queue = NULL;
 
 	printf("\n");
 }
@@ -294,6 +297,7 @@ void testAllMethods() {
 
 	freeQueueMemory(queue);
 	free(queue);
+	queue = NULL;
 
 	printf("\n");
 }

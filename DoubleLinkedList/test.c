@@ -20,6 +20,7 @@ void testNodeStructure() {
 	assert(node1->next == NULL);
 	assert(node1->prev == NULL);
 	free(node1);
+	node1 = NULL;
 
 	// use an integer
 	int val = 100;
@@ -32,6 +33,7 @@ void testNodeStructure() {
 	assert(node2->next == NULL);
 	assert(node2->prev == NULL);
 	free(node2);
+	node2 = NULL;
 
 	// use a character
 	char ch = 'A';
@@ -44,6 +46,7 @@ void testNodeStructure() {
 	assert(node3->next == NULL);
 	assert(node3->prev == NULL);
 	free(node3);
+	node3 = NULL;
 
 	printf("\n");
 }

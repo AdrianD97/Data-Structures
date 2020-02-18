@@ -18,6 +18,7 @@ void testCreateEmptyStack() {
 
 	freeStackMemory(stack);
 	free(stack);
+	stack = NULL;
 
 	printf("\n");
 }
@@ -64,6 +65,7 @@ void testPush() {
 
 	freeStackMemory(stack);
 	free(stack);
+	stack = NULL;
 
 	printf("\n");
 }
@@ -135,6 +137,7 @@ void testPop() {
 
 	freeStackMemory(stack);
 	free(stack);
+	stack = NULL;
 
 	printf("\n");
 }
@@ -241,6 +244,7 @@ void testAllMethods() {
 
 	freeStackMemory(stack);
 	free(stack);
+	stack = NULL;
 
 	printf("\n");
 }
