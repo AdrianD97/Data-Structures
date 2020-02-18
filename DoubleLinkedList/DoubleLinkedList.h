@@ -2,7 +2,6 @@
 #define DOUBLE_LINKED_LIST_H
 
 #include <stdlib.h>
-#include <string.h>
 
 #include "utils/utils.h"
 
