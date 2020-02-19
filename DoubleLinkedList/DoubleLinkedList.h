@@ -6,11 +6,12 @@
 #include "utils/utils.h"
 
 // create an empty double linked list (the method is a kind of C++ constructor)
-DoubleLinkedList* createEmptyDoubleLinkedList() {
+DoubleLinkedList* createEmptyDoubleLinkedList(unsigned int (*compare)(void*, void*)) {
 	DoubleLinkedList* list = (DoubleLinkedList*)malloc(sizeof(DoubleLinkedList));
 
 	list->head = list->tail = NULL;
 	list->length = 0;
+	list->compare = compare;
 
 	return list;
 }
@@ -34,7 +35,7 @@ void addItemToDoubleLinkedList(DoubleLinkedList* list, void* value) {
 }
 
 // find an element by value
-Node* findElementByValue(const DoubleLinkedList* list, const void* value) {
+Node* findElementByValue(const DoubleLinkedList* list, void* value) {
 	if (list->length == 0) {
 		return NULL;
 	}
@@ -45,11 +46,11 @@ Node* findElementByValue(const DoubleLinkedList* list, const void* value) {
 	Node* node2 = list->tail;
 
 	while (var > 0) {
-		if (node1->value == value) {
+		if (list->compare(node1->value, value)) {
 			return node1;
 		}
 
-		if (node2->value == value) {
+		if (list->compare(node2->value, value)) {
 			return node2;
 		}
 
@@ -63,7 +64,7 @@ Node* findElementByValue(const DoubleLinkedList* list, const void* value) {
 }
 
 // remove an item from list(if exists)
-void removeItemFromDoubleLinkedList(DoubleLinkedList* list, const void* value) {
+void removeItemFromDoubleLinkedList(DoubleLinkedList* list, void* value) {
 	Node* node = findElementByValue(list, value);
 
 	if (!node) {

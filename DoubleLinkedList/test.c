@@ -4,6 +4,7 @@
 #include <assert.h>
 
 #include "DoubleLinkedList.h"
+#include "../compare_functions/compare_functions.h"
 
 // Test Node structure
 void testNodeStructure() {
@@ -57,11 +58,12 @@ void testCreateEmptyDoubleLinkedList() {
 
 	DoubleLinkedList* list = NULL;
 
-	list = createEmptyDoubleLinkedList();
+	list = createEmptyDoubleLinkedList(compareStrings);
 	
 	assert(list->length == 0);
 	assert(list->head == NULL);
 	assert(list->tail == NULL);
+	assert(list->compare == compareStrings);
 
 	freeDoubleLinkedListMemory(list);
 	free(list);
@@ -78,7 +80,9 @@ void testAddItemToDoubleLinkedList() {
 	strcpy(elem1, "www.facebook.com");
 	DoubleLinkedList* list = NULL;
 
-	list = createEmptyDoubleLinkedList();
+	list = createEmptyDoubleLinkedList(compareStrings);
+	assert(list->compare == compareStrings);
+
 	addItemToDoubleLinkedList(list, (void*)elem1);
 	assert(list->length == 1);
 	assert(list->head != NULL);
@@ -88,6 +92,8 @@ void testAddItemToDoubleLinkedList() {
 	assert(list->tail->next == NULL);
 	assert(strcmp((char*)list->head->value, elem1) == 0);
 	assert(strcmp((char*)list->tail->value, elem1) == 0);
+	assert(compareStrings(list->head->value, (void*)elem1) == 1);
+	assert(compareStrings(list->tail->value, (void*)elem1) == 1);
 
 	freeDoubleLinkedListMemory(list);
 	free(list);
@@ -98,7 +104,9 @@ void testAddItemToDoubleLinkedList() {
 	strcpy(elem3, "www.geeksforgeeks.org");
 	strcpy(elem4, "stackoverflow.com");
 
-	list = createEmptyDoubleLinkedList();
+	list = createEmptyDoubleLinkedList(compareStrings);
+	assert(list->compare == compareStrings);
+
 	addItemToDoubleLinkedList(list, (void*)elem1);
 	addItemToDoubleLinkedList(list, (void*)elem2);
 	assert(list->length == 2);
@@ -111,6 +119,9 @@ void testAddItemToDoubleLinkedList() {
 	assert(strcmp((char*)list->head->next->value, elem2) == 0);
 	assert(strcmp((char*)list->tail->value, elem2) == 0);
 	assert(strcmp((char*)list->tail->prev->value, elem1) == 0);
+	assert(compareStrings(list->head->value, (void*)elem1) == 1);
+	assert(compareStrings(list->tail->value, (void*)elem2) == 1);
+	assert(compareStrings(list->head->value, list->tail->value) == 0);
 
 	addItemToDoubleLinkedList(list, (void*)elem3);
 	addItemToDoubleLinkedList(list, (void*)elem4);
@@ -126,6 +137,9 @@ void testAddItemToDoubleLinkedList() {
 	assert(strcmp((char*)list->tail->prev->prev->next->value, elem3) == 0);
 	assert(strcmp((char*)list->head->next->next->prev->value, elem2) == 0);
 	assert(strcmp((char*)list->head->next->next->next->prev->prev->value, elem2) == 0);
+	assert(compareStrings(list->head->value, (void*)elem1) == 1);
+	assert(compareStrings(list->tail->value, (void*)elem4) == 1);
+	assert(compareStrings(list->head->next->value, list->tail->prev->value) == 0);
 
 	strcpy(elem5, "www.linkedin.com");
 	addItemToDoubleLinkedList(list, (void*)elem5);
@@ -135,6 +149,9 @@ void testAddItemToDoubleLinkedList() {
 	assert(strcmp((char*)list->head->value, elem1) == 0);
 	assert(strcmp((char*)list->tail->value, elem5) == 0);
 	assert(strcmp((char*)list->tail->prev->value, elem4) == 0);
+	assert(compareStrings(list->head->value, (void*)elem1) == 1);
+	assert(compareStrings(list->tail->value, (void*)elem5) == 1);
+	assert(compareStrings(list->head->next->next->value, list->tail->prev->prev->value) == 1);
 
 	freeDoubleLinkedListMemory(list);
 	free(list);
@@ -157,7 +174,7 @@ void testFindElementByValue() {
 	DoubleLinkedList* list = NULL;
 	Node* node;
 
-	list = createEmptyDoubleLinkedList();
+	list = createEmptyDoubleLinkedList(compareStrings);
 	node = findElementByValue(list, (void*)elem1);
 	assert(node == NULL);
 
@@ -173,6 +190,8 @@ void testFindElementByValue() {
 	assert(node->next == NULL);
 	assert(node->prev == NULL);
 	assert(strcmp((char*)node->value, elem1) == 0);
+	assert(compareStrings(node->value, (void*)elem1) == 1);
+	assert(compareStrings(node->value, (void*)elem2) == 0);
 
 	addItemToDoubleLinkedList(list, (void*)elem2);
 	node = findElementByValue(list, (void*)elem3);
@@ -184,6 +203,7 @@ void testFindElementByValue() {
 	assert(node->next == list->tail);
 	assert(strcmp((char*)node->next->value, elem2) == 0);
 	assert(strcmp((char*)node->next->prev->value, elem1) == 0);
+	assert(compareStrings(node->value, (void*)elem1) == 1);
 
 	node = findElementByValue(list, (void*)elem2);
 	assert(node != NULL);
@@ -191,6 +211,7 @@ void testFindElementByValue() {
 	assert(node->prev == list->head);
 	assert(strcmp((char*)node->prev->value, elem1) == 0);
 	assert(strcmp((char*)node->prev->next->value, elem2) == 0);
+	assert(compareStrings(node->value, (void*)elem2) == 1);
 
 	addItemToDoubleLinkedList(list, (void*)elem3);
 	node = findElementByValue(list, (void*)elem2);
@@ -200,6 +221,8 @@ void testFindElementByValue() {
 	assert(node->next == list->tail);
 	assert(strcmp((char*)node->prev->next->value, elem2) == 0);
 	assert(strcmp((char*)node->next->prev->value, elem2) == 0);
+	assert(compareStrings(node->value, (void*)elem1) == 0);
+	assert(compareStrings(node->value, (void*)elem2) == 1);
 
 	node = findElementByValue(list, (void*)elem4);
 	assert(node == NULL);
@@ -215,6 +238,8 @@ void testFindElementByValue() {
 	assert(strcmp((char*)node->next->value, elem4) == 0);
 	assert(strcmp((char*)node->prev->next->value, elem3) == 0);
 	assert(strcmp((char*)node->next->prev->value, elem3) == 0);
+	assert(compareStrings(node->value, (void*)elem1) == 0);
+	assert(compareStrings(node->value, (void*)elem3) == 1);
 
 	node = findElementByValue(list, (void*)elem5);
 	assert(node == NULL);
@@ -227,6 +252,10 @@ void testFindElementByValue() {
 	assert(node->prev->prev->prev->prev == list->head);
 	assert(strcmp((char*)node->prev->value, elem4) == 0);
 	assert(strcmp((char*)node->prev->prev->value, elem3) == 0);
+	assert(compareStrings(node->value, (void*)elem1) == 0);
+	assert(compareStrings(node->value, (void*)elem5) == 1);
+	assert(compareStrings(node->value, node->prev->value) == 0);
+	assert(compareStrings(node->value, node->prev->next->value) == 1);
 
 	freeDoubleLinkedListMemory(list);
 	free(list);
@@ -247,7 +276,7 @@ void testRemoveItemFromDoubleLinkedList() {
 
 	DoubleLinkedList* list = NULL;
 
-	list = createEmptyDoubleLinkedList();
+	list = createEmptyDoubleLinkedList(compareStrings);
 	removeItemFromDoubleLinkedList(list, (void*)elem1);
 	assert(list->length == 0);
 	assert(list->head == NULL);
@@ -339,7 +368,7 @@ void testAllMethods() {
 	DoubleLinkedList* list = NULL;
 	Node* node;
 
-	list = createEmptyDoubleLinkedList();
+	list = createEmptyDoubleLinkedList(compareStrings);
 	assert(list->length == 0);
 	assert(list->head == NULL);
 	assert(list->tail == NULL);
@@ -364,6 +393,8 @@ void testAllMethods() {
 	assert(node->next = list->tail);
 	assert(strcmp((char*)node->prev->value, elem1) == 0);
 	assert(strcmp((char*)node->next->value, elem3) == 0);
+	assert(compareStrings(node->value, (void*)elem2) == 1);
+	assert(compareStrings(node->value, node->prev->value) == 0);
 
 	removeItemFromDoubleLinkedList(list, (void*)elem4);
 	assert(list->length == 3);
@@ -379,6 +410,7 @@ void testAllMethods() {
 	assert(node->next == list->tail);
 	assert(list->tail->prev == node);
 	assert(strcmp((char*)node->next->value, elem3) == 0);
+	assert(compareStrings(node->value, (void*)elem1) == 1);
 
 	addItemToDoubleLinkedList(list, (void*)elem2);
 	addItemToDoubleLinkedList(list, (void*)elem4);

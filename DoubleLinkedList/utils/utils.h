@@ -13,6 +13,7 @@ typedef struct {
 	Node* head;
 	Node* tail;
 	int length;
+	unsigned int (*compare)(void*, void*);
 } DoubleLinkedList;
 
 #endif // UTILS_H
