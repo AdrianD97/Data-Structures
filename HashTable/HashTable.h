@@ -79,16 +79,14 @@ void erase(HashTable* hashTable, void* key) {
 // free used memory
 void freeHashTableMemory(HashTable* hashTable) {
 	for (unsigned int i = 0; i < hashTable->size; ++i) {
-		if (hashTable->map[i]) {
-			Node* node = hashTable->map[i]->head;
-			while (node != NULL) {
-				free(node->value);
-				node = node->next;
-			}
-
-			freeDoubleLinkedListMemory(hashTable->map[i]);
-			free(hashTable->map[i]);
+		Node* node = hashTable->map[i]->head;
+		while (node != NULL) {
+			free(node->value);
+			node = node->next;
 		}
+
+		freeDoubleLinkedListMemory(hashTable->map[i]);
+		free(hashTable->map[i]);
 	}
 
 	free(hashTable->map);
