@@ -92,6 +92,7 @@ void testPop() {
 	assert(stack->length == 1);
 	node = pop(stack);
 	assert(node != NULL);
+	assert(node->next == NULL);
 	assert(node != stack->head);
 	assert(strcmp((char*)node->value, elem1) == 0);
 	assert(stack->length == 0);
@@ -107,6 +108,7 @@ void testPop() {
 	node = pop(stack);
 	assert(stack->length == 2);
 	assert(node != NULL);
+	assert(node->next == NULL);
 	assert(node != stack->head);
 	assert(strcmp((char*)node->value, elem4) == 0);
 	assert(strcmp((char*)stack->head->value, elem3) == 0);
@@ -116,6 +118,7 @@ void testPop() {
 	node = pop(stack);
 	assert(stack->length == 1);
 	assert(node != NULL);
+	assert(node->next == NULL);
 	assert(node != stack->head);
 	assert(strcmp((char*)node->value, elem3) == 0);
 	assert(strcmp((char*)stack->head->value, elem2) == 0);
@@ -125,6 +128,7 @@ void testPop() {
 	node = pop(stack);
 	assert(stack->length == 0);
 	assert(node != NULL);
+	assert(node->next == NULL);
 	assert(strcmp((char*)node->value, elem2) == 0);
 	assert(stack->head == NULL);
 	assert(stack->size == size);
@@ -174,6 +178,7 @@ void testAllMethods() {
 	node = pop(stack);
 	assert(stack->length == 2);
 	assert(node != NULL);
+	assert(node->next == NULL);
 	assert(strcmp((char*)node->value, elem3) == 0);
 	assert(strcmp((char*)stack->head->value, elem2) == 0);
 	free(node);
@@ -181,6 +186,7 @@ void testAllMethods() {
 	node = pop(stack);
 	assert(stack->length == 1);
 	assert(node != NULL);
+	assert(node->next == NULL);
 	assert(strcmp((char*)node->value, elem2) == 0);
 	assert(strcmp((char*)stack->head->value, elem1) == 0);
 	free(node);
@@ -188,6 +194,7 @@ void testAllMethods() {
 	node = pop(stack);
 	assert(stack->length == 0);
 	assert(node != NULL);
+	assert(node->next == NULL);
 	assert(strcmp((char*)node->value, elem1) == 0);
 	assert(stack->head == NULL);
 	free(node);
@@ -205,6 +212,7 @@ void testAllMethods() {
 	node = pop(stack);
 	assert(stack->length == 2);
 	assert(node != NULL);
+	assert(node->next == NULL);
 	assert(strcmp((char*)node->value, elem3) == 0);
 	assert(strcmp((char*)stack->head->value, elem2) == 0);
 	free(node);
@@ -216,6 +224,7 @@ void testAllMethods() {
 	node = pop(stack);
 	assert(stack->length == 3);
 	assert(node != NULL);
+	assert(node->next == NULL);
 	assert(strcmp((char*)node->value, elem5) == 0);
 	assert(strcmp((char*)stack->head->value, elem4) == 0);
 	free(node);
@@ -223,6 +232,7 @@ void testAllMethods() {
 	node = pop(stack);
 	assert(stack->length == 2);
 	assert(node != NULL);
+	assert(node->next == NULL);
 	assert(strcmp((char*)node->value, elem4) == 0);
 	assert(strcmp((char*)stack->head->value, elem2) == 0);
 	free(node);
@@ -230,6 +240,7 @@ void testAllMethods() {
 	node = pop(stack);
 	assert(stack->length == 1);
 	assert(node != NULL);
+	assert(node->next == NULL);
 	assert(strcmp((char*)node->value, elem2) == 0);
 	assert(strcmp((char*)stack->head->value, elem1) == 0);
 	free(node);

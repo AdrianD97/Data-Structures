@@ -49,6 +49,7 @@ Node* pop(Stack* stack) {
 	stack->head = node->next;
 	--stack->length;
 
+	node->next = NULL;
 	return node;
 }
 
