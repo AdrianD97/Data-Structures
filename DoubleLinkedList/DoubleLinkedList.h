@@ -64,40 +64,32 @@ Node* findElementByValue(const DoubleLinkedList* list, void* value) {
 }
 
 // remove an item from list(if exists)
-void removeItemFromDoubleLinkedList(DoubleLinkedList* list, void* value) {
+Node* removeItemFromDoubleLinkedList(DoubleLinkedList* list, void* value) {
 	Node* node = findElementByValue(list, value);
 
 	if (!node) {
-		return;
+		return NULL;
 	}
 
-	// a single item
 	if (list->length == 1) {
-		list->length = 0;
-		free(list->head);
+		// a single item
 		list->head = list->tail = NULL;
-		return;
-	}
-
-	// head node has to be removed
-	if (node == list->head) {
+	} else if (node == list->head) {
+		// head node has to be removed
 		list->head = list->head->next;
 		list->head->prev = NULL;
-		--list->length;
-		free(node);
-		return;
-	}
-
-	// remove an ordinary node
-	node->prev->next = node->next;
-	if (node == list->tail) {
-		list->tail = node->prev;
 	} else {
-		node->next->prev = node->prev;
+		// remove an ordinary node
+		node->prev->next = node->next;
+		if (node == list->tail) {
+			list->tail = node->prev;
+		} else {
+			node->next->prev = node->prev;
+		}
 	}
 
-	free(node);
 	--list->length;
+	return node;
 }
 
 // free memory used
