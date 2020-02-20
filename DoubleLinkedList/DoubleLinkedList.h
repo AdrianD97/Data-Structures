@@ -89,6 +89,7 @@ Node* removeItemFromDoubleLinkedList(DoubleLinkedList* list, void* value) {
 	}
 
 	--list->length;
+	node->next = node->prev = NULL;
 	return node;
 }
 

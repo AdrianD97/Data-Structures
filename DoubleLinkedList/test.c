@@ -297,6 +297,8 @@ void testRemoveItemFromDoubleLinkedList() {
 
 	node = removeItemFromDoubleLinkedList(list, (void*)elem1);
 	assert(node != NULL);
+	assert(node->next == NULL);
+	assert(node->prev == NULL);
 	assert(strcmp((char*)node->value, elem1) == 0);
 	free(node);
 	assert(list->length == 0);
@@ -318,6 +320,8 @@ void testRemoveItemFromDoubleLinkedList() {
 
 	node = removeItemFromDoubleLinkedList(list, (void*)elem1);
 	assert(node != NULL);
+	assert(node->next == NULL);
+	assert(node->prev == NULL);
 	assert(strcmp((char*)node->value, elem1) == 0);
 	free(node);
 	assert(list->length == 1);
@@ -332,6 +336,8 @@ void testRemoveItemFromDoubleLinkedList() {
 	assert(list->length == 3);
 	node = removeItemFromDoubleLinkedList(list, (void*)elem1);
 	assert(node != NULL);
+	assert(node->next == NULL);
+	assert(node->prev == NULL);
 	assert(strcmp((char*)node->value, elem1) == 0);
 	free(node);
 	assert(list->length == 2);
@@ -342,6 +348,8 @@ void testRemoveItemFromDoubleLinkedList() {
 
 	node = removeItemFromDoubleLinkedList(list, (void*)elem3);
 	assert(node != NULL);
+	assert(node->next == NULL);
+	assert(node->prev == NULL);
 	assert(strcmp((char*)node->value, elem3) == 0);
 	free(node);
 	assert(list->length == 1);
@@ -357,6 +365,8 @@ void testRemoveItemFromDoubleLinkedList() {
 	assert(list->length == 4);
 	node = removeItemFromDoubleLinkedList(list, (void*)elem1);
 	assert(node != NULL);
+	assert(node->next == NULL);
+	assert(node->prev == NULL);
 	assert(strcmp((char*)node->value, elem1) == 0);
 	free(node);
 	assert(list->length == 3);
@@ -421,6 +431,8 @@ void testAllMethods() {
 
 	node = removeItemFromDoubleLinkedList(list, (void*)elem2);
 	assert(node != NULL);
+	assert(node->next == NULL);
+	assert(node->prev == NULL);
 	assert(strcmp((char*)node->value, elem2) == 0);
 	free(node);
 	assert(list->length == 2);
@@ -451,6 +463,8 @@ void testAllMethods() {
 
 	node = removeItemFromDoubleLinkedList(list, (void*)elem2);
 	assert(node != NULL);
+	assert(node->next == NULL);
+	assert(node->prev == NULL);
 	assert(strcmp((char*)node->value, elem2) == 0);
 	free(node);
 	assert(list->length == 4);
@@ -466,6 +480,8 @@ void testAllMethods() {
 
 	node = removeItemFromDoubleLinkedList(list, (void*)elem5);
 	assert(node != NULL);
+	assert(node->next == NULL);
+	assert(node->prev == NULL);
 	assert(strcmp((char*)node->value, elem5) == 0);
 	free(node);
 	assert(list->length == 3);
@@ -482,6 +498,8 @@ void testAllMethods() {
 
 	node = removeItemFromDoubleLinkedList(list, (void*)elem1);
 	assert(node != NULL);
+	assert(node->next == NULL);
+	assert(node->prev == NULL);
 	assert(strcmp((char*)node->value, elem1) == 0);
 	free(node);
 	assert(list->length == 2);
