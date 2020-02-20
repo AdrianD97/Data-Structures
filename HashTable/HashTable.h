@@ -66,11 +66,10 @@ void erase(HashTable* hashTable, void* key) {
 	pair->key = key;
 	pair->value = NULL;
 
-	Node* node = findElementByValue(hashTable->map[index], (void*)pair);
+	Node* node = removeItemFromDoubleLinkedList(hashTable->map[index], (void*)pair);
 	if (node) {
-		Pair* pairHelp = (Pair*)node->value;
-		removeItemFromDoubleLinkedList(hashTable->map[index], (void*)pair);
-		free(pairHelp);
+		free(node->value);
+		free(node);
 	}
 
 	free(pair);
