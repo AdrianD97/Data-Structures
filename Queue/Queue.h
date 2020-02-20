@@ -53,6 +53,7 @@ Node* erase(Queue* queue) {
 
 	--queue->length;
 
+	node->next = NULL;
 	return node;
 }
 

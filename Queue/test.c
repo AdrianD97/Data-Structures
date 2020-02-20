@@ -111,6 +111,7 @@ void testErase() {
 
 	node = erase(queue);
 	assert(node != NULL);
+	assert(node->next == NULL);
 	assert(strcmp((char*)node->value, elem1) == 0);
 	assert(queue->size == size);
 	assert(queue->length == 0);
@@ -126,6 +127,7 @@ void testErase() {
 
 	node = erase(queue);
 	assert(node != NULL);
+	assert(node->next == NULL);
 	assert(strcmp((char*)node->value, elem1) == 0);
 	assert(queue->size == size);
 	assert(queue->length == 2);
@@ -136,6 +138,7 @@ void testErase() {
 
 	node = erase(queue);
 	assert(node != NULL);
+	assert(node->next == NULL);
 	assert(strcmp((char*)node->value, elem2) == 0);
 	assert(queue->size == size);
 	assert(queue->length == 1);
@@ -152,6 +155,7 @@ void testErase() {
 
 	node = erase(queue);
 	assert(node != NULL);
+	assert(node->next == NULL);
 	assert(strcmp((char*)node->value, elem3) == 0);
 	assert(queue->size == size);
 	assert(queue->length == 3);
@@ -162,6 +166,7 @@ void testErase() {
 
 	node = erase(queue);
 	assert(node != NULL);
+	assert(node->next == NULL);
 	assert(strcmp((char*)node->value, elem2) == 0);
 	assert(queue->size == size);
 	assert(queue->length == 2);
@@ -172,6 +177,7 @@ void testErase() {
 
 	node = erase(queue);
 	assert(node != NULL);
+	assert(node->next == NULL);
 	assert(strcmp((char*)node->value, elem1) == 0);
 	assert(queue->size == size);
 	assert(queue->length == 1);
@@ -217,6 +223,7 @@ void testAllMethods() {
 
 	node = erase(queue);
 	assert(node != NULL);
+	assert(node->next == NULL);
 	assert(strcmp((char*)node->value, elem1) == 0);
 	assert(queue->size == size);
 	assert(queue->length == 2);
@@ -234,6 +241,7 @@ void testAllMethods() {
 
 	node = erase(queue);
 	assert(node != NULL);
+	assert(node->next == NULL);
 	assert(strcmp((char*)node->value, elem2) == 0);
 	assert(queue->size == size);
 	assert(queue->length == 3);
@@ -244,6 +252,7 @@ void testAllMethods() {
 
 	node = erase(queue);
 	assert(node != NULL);
+	assert(node->next == NULL);
 	assert(strcmp((char*)node->value, elem3) == 0);
 	assert(queue->size == size);
 	assert(queue->length == 2);
@@ -254,6 +263,7 @@ void testAllMethods() {
 
 	node = erase(queue);
 	assert(node != NULL);
+	assert(node->next == NULL);
 	assert(strcmp((char*)node->value, elem4) == 0);
 	assert(queue->size == size);
 	assert(queue->length == 1);
@@ -270,6 +280,7 @@ void testAllMethods() {
 
 	node = erase(queue);
 	assert(node != NULL);
+	assert(node->next == NULL);
 	assert(strcmp((char*)node->value, elem1) == 0);
 	assert(queue->size == size);
 	assert(queue->length == 1);
