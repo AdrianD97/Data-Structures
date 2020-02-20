@@ -51,29 +51,30 @@ Node* findElementByValue(const LinkedList* list, const char* value) {
 }
 
 // remove an item from list(if exists)
-void removeItemFromLinkedList(LinkedList* list, const char* value) {
+Node* removeItemFromLinkedList(LinkedList* list, const char* value) {
 	// empty list
 	if (list->length == 0) {
-		return;
+		return NULL;
 	}
 
+	Node* node = NULL;
 	// a single item
 	if (list->length == 1) {
 		if (strcmp(list->head->value, value) == 0) {
 			list->length = 0;
-			free(list->head);
+			node = list->head;
 			list->head = list->tail = NULL;
 		}
-		return;
+		return node;
 	}
 
-	Node* node = list->head;
+	node = list->head;
 	// head node has to be removed
 	if (strcmp(node->value, value) == 0) {
 		list->head = list->head->next;
 		--list->length;
-		free(node);
-		return;
+		node->next = NULL;
+		return node;
 	}
 
 	// remove an ordinary node
@@ -94,9 +95,12 @@ void removeItemFromLinkedList(LinkedList* list, const char* value) {
 		if (node == list->tail) {
 			list->tail = helpNode;
 		}
-		free(node);
 		--list->length;
+		node->next = NULL;
+		return node;
 	}
+
+	return NULL;
 }
 
 // free memory used

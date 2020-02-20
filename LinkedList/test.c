@@ -143,9 +143,11 @@ void testRemoveItemFromLinkedList() {
 	strcpy(elem4, "stackoverflow.com");
 
 	LinkedList* list = NULL;
+	Node* node;
 
 	list = createEmptyLinkedList();
-	removeItemFromLinkedList(list, elem1);
+	node = removeItemFromLinkedList(list, elem1);
+	assert(node == NULL);
 	assert(list->length == 0);
 
 	addItemToLinkedList(list, elem1);
@@ -154,13 +156,18 @@ void testRemoveItemFromLinkedList() {
 	assert(strcmp(list->head->value, elem1) == 0);
 	assert(strcmp(list->tail->value, elem1) == 0);
 
-	removeItemFromLinkedList(list, elem4);
+	node = removeItemFromLinkedList(list, elem4);
+	assert(node == NULL);
 	assert(list->length == 1);
 	assert(list->head == list->tail);
 	assert(strcmp(list->head->value, elem1) == 0);
 	assert(strcmp(list->tail->value, elem1) == 0);
 
-	removeItemFromLinkedList(list, elem1);
+	node = removeItemFromLinkedList(list, elem1);
+	assert(node != NULL);
+	assert(node->next == NULL);
+	assert(strcmp(node->value, elem1) == 0);
+	free(node);
 	assert(list->length == 0);
 	assert(list->head == NULL);
 	assert(list->tail == NULL);
@@ -175,12 +182,17 @@ void testRemoveItemFromLinkedList() {
 	assert(strcmp(list->tail->value, elem3) == 0);
 	displayLinkedList(list);
 
-	removeItemFromLinkedList(list, elem4);
+	node = removeItemFromLinkedList(list, elem4);
+	assert(node == NULL);
 	assert(list->length == 3);
 	assert(list->head->next->next == list->tail);
 	assert(strcmp(list->tail->value, elem3) == 0);
 
-	removeItemFromLinkedList(list, elem1);
+	node = removeItemFromLinkedList(list, elem1);
+	assert(node != NULL);
+	assert(node->next == NULL);
+	assert(strcmp(node->value, elem1) == 0);
+	free(node);
 	assert(list->length == 2);
 	assert(strcmp(list->head->value, elem2) == 0);
 	assert(strcmp(list->head->next->value, elem3) == 0);
@@ -198,7 +210,11 @@ void testRemoveItemFromLinkedList() {
 	assert(strcmp(list->tail->value, elem4) == 0);
 	displayLinkedList(list);
 
-	removeItemFromLinkedList(list, elem1);
+	node = removeItemFromLinkedList(list, elem1);
+	assert(node != NULL);
+	assert(node->next == NULL);
+	assert(strcmp(node->value, elem1) == 0);
+	free(node);
 	assert(list->length == 3);
 	assert(strcmp(list->head->value, elem2) == 0);
 	assert(strcmp(list->head->next->value, elem3) == 0);
@@ -206,7 +222,11 @@ void testRemoveItemFromLinkedList() {
 	assert(list->head->next->next == list->tail);
 	assert(strcmp(list->tail->value, elem4) == 0);
 
-	removeItemFromLinkedList(list, elem4);
+	node = removeItemFromLinkedList(list, elem4);
+	assert(node != NULL);
+	assert(node->next == NULL);
+	assert(strcmp(node->value, elem4) == 0);
+	free(node);
 	assert(list->length == 2);
 	assert(strcmp(list->head->value, elem2) == 0);
 	assert(strcmp(list->head->next->value, elem3) == 0);
@@ -251,7 +271,11 @@ void testAllMethods() {
 	assert((node != NULL) && strcmp(node->value, elem2) == 0);
 	assert(node == list->head->next);
 
-	removeItemFromLinkedList(list, elem1);
+	node = removeItemFromLinkedList(list, elem1);
+	assert(node != NULL);
+	assert(node->next == NULL);
+	assert(strcmp(node->value, elem1) == 0);
+	free(node);
 	node = findElementByValue(list, elem1);
 	assert(node == NULL);
 	assert(strcmp(list->head->value, elem2) == 0);
@@ -264,7 +288,11 @@ void testAllMethods() {
 	assert(strcmp(node->next->value, elem5) == 0);
 	assert(node->next == list->tail);
 
-	removeItemFromLinkedList(list, elem3);
+	node = removeItemFromLinkedList(list, elem3);
+	assert(node != NULL);
+	assert(node->next == NULL);
+	assert(strcmp(node->value, elem3) == 0);
+	free(node);
 	assert(strcmp(list->head->value, elem2) == 0);
 	assert(strcmp(list->head->next->value, elem4) == 0);
 	assert(strcmp(list->head->next->next->value, elem5) == 0);
@@ -276,25 +304,41 @@ void testAllMethods() {
 	assert(node->next == list->tail);
 	assert(strcmp(list->tail->value, elem1) == 0);
 
-	removeItemFromLinkedList(list, elem2);
+	node = removeItemFromLinkedList(list, elem2);
+	assert(node != NULL);
+	assert(node->next == NULL);
+	assert(strcmp(node->value, elem2) == 0);
+	free(node);
 	assert(list->length == 3);
 	assert(strcmp(list->head->value, elem4) == 0);
 	assert(strcmp(list->head->next->value, elem5) == 0);
 
-	removeItemFromLinkedList(list, elem1);
+	node = removeItemFromLinkedList(list, elem1);
+	assert(node != NULL);
+	assert(node->next == NULL);
+	assert(strcmp(node->value, elem1) == 0);
+	free(node);
 	assert(list->length == 2);
 	assert(strcmp(list->head->value, elem4) == 0);
 	assert(strcmp(list->head->next->value, elem5) == 0);
 	assert(strcmp(list->tail->value, elem5) == 0);
 
-	removeItemFromLinkedList(list, elem4);
+	node = removeItemFromLinkedList(list, elem4);
+	assert(node != NULL);
+	assert(node->next == NULL);
+	assert(strcmp(node->value, elem4) == 0);
+	free(node);
 	assert(list->length == 1);
 	assert(strcmp(list->head->value, elem5) == 0);
 	assert(list->head->next == NULL);
 	assert(list->head == list->tail);
 	assert(strcmp(list->tail->value, elem5) == 0);
 
-	removeItemFromLinkedList(list, elem5);
+	node = removeItemFromLinkedList(list, elem5);
+	assert(node != NULL);
+	assert(node->next == NULL);
+	assert(strcmp(node->value, elem5) == 0);
+	free(node);
 	assert(list->length == 0);
 	assert(list->head == NULL);
 	assert(list->tail == NULL);
