@@ -25,14 +25,6 @@ void push(Stack* stack, void* value) {
 
 	Node* node = (Node*)malloc(sizeof(Node));
 	node->value = value;
-	node->next = NULL;
-
-	// stack is empty
-	if (stack->length == 0) {
-		++stack->length;
-		stack->head = node;
-		return;
-	}
 
 	node->next = stack->head;
 	stack->head = node;
