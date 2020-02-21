@@ -337,7 +337,7 @@ void testFindElementByValue() {
 	printf("\n");
 }
 
-// TODO: test removeItemFromBinarySearchTree() function
+// test removeItemFromBinarySearchTree() function
 void testRemoveItemFromBinarySearchTree() {
 	printf("test removeItemFromBinarySearchTree() function.\n");
 
