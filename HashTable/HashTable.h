@@ -77,6 +77,10 @@ void erase(HashTable* hashTable, void* key) {
 
 // free used memory
 void freeHashTableMemory(HashTable* hashTable) {
+	if (!hashTable) {
+		return;
+	}
+	
 	for (unsigned int i = 0; i < hashTable->size; ++i) {
 		Node* node = hashTable->map[i]->head;
 		while (node != NULL) {

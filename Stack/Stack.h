@@ -55,7 +55,7 @@ Node* pop(Stack* stack) {
 
 // free memory used
 void freeStackMemory(Stack* stack) {
-	if (stack->length == 0) {
+	if (!stack || stack->length == 0) {
 		return;
 	}
 

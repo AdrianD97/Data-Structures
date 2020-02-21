@@ -95,7 +95,7 @@ Node* removeItemFromDoubleLinkedList(DoubleLinkedList* list, void* value) {
 
 // free memory used
 void freeDoubleLinkedListMemory(DoubleLinkedList* list) {
-	if (list->length == 0) {
+	if (!list || list->length == 0) {
 		return;
 	}
 

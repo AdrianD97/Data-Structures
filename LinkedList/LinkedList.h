@@ -105,7 +105,7 @@ Node* removeItemFromLinkedList(LinkedList* list, const char* value) {
 
 // free memory used
 void freeLinkedListMemory(LinkedList* list) {
-	if (list->length == 0) {
+	if (!list || list->length == 0) {
 		return;
 	}
 

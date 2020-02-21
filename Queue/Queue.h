@@ -59,7 +59,7 @@ Node* erase(Queue* queue) {
 
 // free memory used
 void freeQueueMemory(Queue* queue) {
-	if (queue->length == 0) {
+	if (!queue || queue->length == 0) {
 		return;
 	}
 
