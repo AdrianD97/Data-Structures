@@ -3,7 +3,7 @@
 #include <assert.h>
 
 #include "BinarySearchTree.h"
-#include "../compare_functions/compare_functions_tree.h"
+#include "../compare_functions/compare_functions_.h"
 
 // test Node structure
 void testNodeStructure() {
