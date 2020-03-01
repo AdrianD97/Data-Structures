@@ -1,5 +1,5 @@
-#ifndef COMPARE_FUNCTIONS_TREE_H
-#define COMPARE_FUNCTIONS_TREE_H
+#ifndef COMPARE_FUNCTIONS__H
+#define COMPARE_FUNCTIONS__H
 
 #include <string.h>
 
@@ -17,4 +17,4 @@ int compareIntegers(void* arg1, void* arg2) {
 	return a - b;
 }
 
-#endif // COMPARE_FUNCTIONS_TREE_H
+#endif // COMPARE_FUNCTIONS__H
