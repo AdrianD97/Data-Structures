@@ -6,3 +6,5 @@
 4. Queue
 5. HashTable
 6. BinarySearchTree
+7. Min-Heap
+8. Max-Heap
