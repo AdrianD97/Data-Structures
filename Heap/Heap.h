@@ -30,7 +30,7 @@ void pushUp(Heap* heap, int type) {
 
 		result = heap->compare(heap->arr[index], heap->arr[parent]);
 
-		if (type == 1) { // heap is min heap
+		if (type == MIN_HEAP) { // heap is min heap
 			if (result >= 0) {
 				break;
 			}
@@ -48,11 +48,11 @@ void pushUp(Heap* heap, int type) {
 }
 
 /*
-	type = 1 -> heap is a min heap
-	type = 0 -> heap is a max heap
+	type = MIN_HEAP -> heap is a min heap
+	type = MAX_HEAP -> heap is a max heap
 */
 void addItemToHeap(Heap* heap, void* value, int type) {
-	if (!heap || (type != 0 && type != 1)) {
+	if (!heap || (type != MAX_HEAP && type != MIN_HEAP)) {
 		return;
 	}
 
@@ -92,7 +92,7 @@ void pushDown(Heap* heap, int type) {
 			} else {
 				result_ = heap->compare(heap->arr[2 * index], heap->arr[2 * index + 1]);
 
-				if (type == 1) { // heap is min heap
+				if (type == MIN_HEAP) { // heap is min heap
 					child_ind = (result_ < 0) ? (2 * index) : (2 * index + 1);
 				} else { // heap is max heap
 					child_ind = (result_ > 0) ? (2 * index) : (2 * index + 1);
@@ -101,7 +101,7 @@ void pushDown(Heap* heap, int type) {
 				result = heap->compare(heap->arr[index], heap->arr[child_ind]);
 			}
 
-			if (type == 1) { // heap is min heap
+			if (type == MIN_HEAP) { // heap is min heap
 				if (result <= 0) {
 					break;
 				}
@@ -123,11 +123,11 @@ void pushDown(Heap* heap, int type) {
 }
 
 /*
-	type = 1 -> heap is a min heap
-	type = 0 -> heap is a max heap
+	type = MIN_HEAP -> heap is a min heap
+	type = MAX_HEAP -> heap is a max heap
 */
 void* removeHeapRoot(Heap* heap, int type) {
-	if (!heap || !heap->arr || heap->index == 0 || (type != 0 && type != 1)) {
+	if (!heap || !heap->arr || heap->index == 0 || (type != MAX_HEAP && type != MIN_HEAP)) {
 		return NULL;
 	}
 
