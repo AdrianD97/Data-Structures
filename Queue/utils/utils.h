@@ -7,7 +7,7 @@ typedef struct Node {
 	struct Node* next;
 } Node;
 
-// describes a Stack
+// describes a Queue
 typedef struct {
 	Node* head;
 	Node* tail;
